@@ -45,6 +45,8 @@ Below is the main part that should be edited.
 
 Edited version
 
+**Indent the code accordingly**
+
 
     def level_4_pw_check():
 
@@ -84,7 +86,9 @@ Below is the edited code, run it to get the flag.
 **
 _Don't just paste the flag (: understand what the code does :)_**
 
-import hashlib
+Indent the code accordingly.
+
+    import hashlib
 
 ### THIS FUNCTION WILL NOT HELP YOU FIND THE FLAG --LT ########################
     def str_xor(secret, key):
