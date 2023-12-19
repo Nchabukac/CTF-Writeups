@@ -102,43 +102,50 @@ correct_pw_hash = open('level5.hash.bin', 'rb').read()
 
 
 
-#clean_pass = pos_pass.strip()
-#print(clean_pass)
-#pos_pass.strip()
 
-def hash_pw(pw_str):
+    #clean_pass = pos_pass.strip()
+    #print(clean_pass)
+    #pos_pass.strip()
+
+    def hash_pw(pw_str):
     
-    pw_bytes = bytearray()
-    pw_bytes.extend(pw_str.encode())
-    m = hashlib.md5()
-    m.update(pw_bytes)
-    return m.digest()
+        pw_bytes = bytearray()
+        pw_bytes.extend(pw_str.encode())
+        m = hashlib.md5()
+        m.update(pw_bytes)
+        return m.digest()
     
 
-def level_5_pw_check():
+    def level_5_pw_check():
     
-    #user_pw = input("Please enter correct password for flag: ")
+        #user_pw = input("Please enter correct password for flag: ")
     
-    pos_pass = open('dictionary.txt', 'r').read()
-    #print(pos_pass)
+        pos_pass = open('dictionary.txt', 'r').read()
+        #print(pos_pass)
 
-    new_list = pos_pass.split()
-    #print(new_list)
+        new_list = pos_pass.split()
+        #print(new_list)
 
-    for user_pw in new_list:
+        for user_pw in new_list:
 
-        user_pw_hash = hash_pw(user_pw)
+            user_pw_hash = hash_pw(user_pw)
     
-        if( user_pw_hash == correct_pw_hash ):
-            print("Welcome back... your flag, user:")
-            decryption = str_xor(flag_enc.decode(), user_pw)
-            print(decryption)
-            return
-    print("That password is incorrect")
+            if( user_pw_hash == correct_pw_hash ):
+                print("Welcome back... your flag, user:")
+                decryption = str_xor(flag_enc.decode(), user_pw)
+                print(decryption)
+                return
+        print("That password is incorrect")
 
 
 
-level_5_pw_check()
+    level_5_pw_check()
+
+Run the python file with python3 level5.py
+
+Welcome back... your flag, user:
+
+picoCTF{h45h_sl1ng1ng_40f26f81}
 
 
 
