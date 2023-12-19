@@ -29,6 +29,7 @@ Python skills are required to solve this challenge.
 
 Below is the main part that should be edited.
 
+
 def level_4_pw_check():
 
     user_pw = input("Please enter correct password for flag: ")
@@ -43,6 +44,7 @@ def level_4_pw_check():
 
 
 Edited version
+
 
 def level_4_pw_check():
 
@@ -62,6 +64,83 @@ def level_4_pw_check():
 After applying the changes run the python file with python3 level4.py
 
 picoCTF{fl45h_5pr1ng1ng_d770d48c}
+
+
+**PICO CTF PW Crack 5 writeup**
+
+CHALLENGE NAME - PW Crack 5
+
+CHALLENGE DESCRIPTION - Can you crack the password to get the flag?
+
+Download the password checker here and you'll need the encrypted flag and the hash in the same directory too. Here's a dictionary with all possible passwords based on the password conventions we've seen so far.
+
+HINTS - Opening a file in Python is crucial to using the provided dictionary.
+
+You may need to trim the whitespace from the dictionary word before hashing. Look up the Python string function, strip
+
+Python skills are required to solve this challenge.
+
+Below is the edited code, run it to get the flag.
+
+Don't just paste the flag (: understand what the code does :)
+
+import hashlib
+
+### THIS FUNCTION WILL NOT HELP YOU FIND THE FLAG --LT ########################
+def str_xor(secret, key):
+    #extend key to secret length
+    new_key = key
+    i = 0
+    while len(new_key) < len(secret):
+        new_key = new_key + key[i]
+        i = (i + 1) % len(key)        
+    return "".join([chr(ord(secret_c) ^ ord(new_key_c)) for (secret_c,new_key_c) in zip(secret,new_key)])
+###############################################################################
+
+flag_enc = open('level5.flag.txt.enc', 'rb').read()
+correct_pw_hash = open('level5.hash.bin', 'rb').read()
+
+
+
+#clean_pass = pos_pass.strip()
+#print(clean_pass)
+#pos_pass.strip()
+
+def hash_pw(pw_str):
+    
+    pw_bytes = bytearray()
+    pw_bytes.extend(pw_str.encode())
+    m = hashlib.md5()
+    m.update(pw_bytes)
+    return m.digest()
+    
+
+def level_5_pw_check():
+    
+    #user_pw = input("Please enter correct password for flag: ")
+    
+    pos_pass = open('dictionary.txt', 'r').read()
+    #print(pos_pass)
+
+    new_list = pos_pass.split()
+    #print(new_list)
+
+    for user_pw in new_list:
+
+        user_pw_hash = hash_pw(user_pw)
+    
+        if( user_pw_hash == correct_pw_hash ):
+            print("Welcome back... your flag, user:")
+            decryption = str_xor(flag_enc.decode(), user_pw)
+            print(decryption)
+            return
+    print("That password is incorrect")
+
+
+
+level_5_pw_check()
+
+
 
     
 
