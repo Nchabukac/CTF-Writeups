@@ -1,6 +1,0 @@
-Challenge description - Forensics
-we are required to to use mmls to find the size of the linux partition.We should also connect to the remote checker to get the flag.
-Download the disk image with wget https://artifacts.picoctf.net/c/164/disk.img.gz
-unzip with gzip -d disk.img.gz
-![sleuth1](https://github.com/Nchabukac/CTF-Writeups/assets/101572287/2afb7435-cdeb-4b46-8c11-96d1d0973346)
-
